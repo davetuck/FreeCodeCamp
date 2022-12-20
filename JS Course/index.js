@@ -18,7 +18,7 @@ console.log(myName);
 
 myName = 8;
 
-let ourName = "freeCodeCamp"  // let can only be used within the scope where you declare it.
+let campName = "freeCodeCamp"  // let can only be used within the scope where you declare it.
 console.log(ourName);
 
 const pi = 3.14      // a variable that can never change. if you try to change it, you'll get an error
@@ -180,3 +180,50 @@ console.log(myStr);
     var myStr = "This is the first sentence. ";
     myStr += "This is the second sentence.";
     console.log(myStr);
+
+// Combining Strings Together With Variables in a Concatenation
+  // Example 1:
+  var ourName = "FreeCodeCamp";
+  var ourStr = "Hello, our name is " + ourName + ".  How are you?";
+  console.log(ourStr);
+  // Example 2: 
+  var myName = "Dave";
+  var myString = "Hi!  My name is " + myName + " and I am well, thank you!";
+  console.log(myString);
+
+// Appending Variables to Strings using +=
+  // Example 1: 
+  var anAdjective = "awesome.";
+  var ourStr = "FreeCodeCamp is ";
+  ourStr += anAdjective;
+  console.log(ourStr);
+  // Example 2:
+  var someAdjective = "worthwhile!";
+  var myStr = "Learning to code is ";
+  myStr += someAdjective;
+  console.log(myStr);
+
+// Finding the length of a string
+  // Example 1:
+  var firstNameLength = 0;
+  var firstName = "Davit";
+  firstNameLength = firstName.length;  // .length returns an integer that counts the string length
+  console.log(firstNameLength);
+  // Example 2:
+  var lastNameLength = 0;
+  var lastName = "Goggins";
+  var lastNameLength = lastName.length;
+  console.log(lastNameLength);
+  // you can write this 👆🏼 like this 👇🏼:
+  var lastNameLength = lastName.length;
+  var lastName = "Goggins"
+  console.log(lastNameLength);
+
+// Bracket Notation to Find First Character in String
+  // Example 1: 
+  var firstLetterOfFirstName = "";
+  var firstName = "Gangnam";
+  firstLetterOfFirstName = firstName[0];
+  console.log(firstLetterOfFirstName);
+  // Example 2 (shorter way of writing these 👆🏼 last two lines): 
+  console.log(firstName[0]);
