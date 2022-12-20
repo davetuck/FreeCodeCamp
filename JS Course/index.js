@@ -223,7 +223,102 @@ console.log(myStr);
   // Example 1: 
   var firstLetterOfFirstName = "";
   var firstName = "Gangnam";
-  firstLetterOfFirstName = firstName[0];
+  firstLetterOfFirstName = firstName[0]; // JS starts counting at zero, which is called "Zero Phase Indexing".
   console.log(firstLetterOfFirstName);
-  // Example 2 (shorter way of writing these 👆🏼 last two lines): 
-  console.log(firstName[0]);
+  // Example 2:
+  var firstLetterOfLastName = "";
+  var lastName = "Style";
+  firstLetterOfLastName = lastName[0];
+  console.log(firstLetterOfLastName);
+    // here's a shorter way of writing these lines 226-227 and 231-232): 
+    console.log(firstName[0]);
+    console.log(lastName[0]);
+
+// String Immutability (strings are immutable, meaning they cannot be altered once created).
+    // this doesn't mean they can't be changed, but the individual characters of a String Literal can not be changed.
+var myStr = "Jello World";  // Fix Me
+myStr = "Hello World"; 
+console.log(myStr);
+
+// Bracket Notation to find Nth Character in a String
+  // Example: 
+  var firstName = "Ada";
+  var secondLetterOfFirstName = firstName[1];
+  console.log(secondLetterOfFirstName);
+
+// Bracket Notation to find Last Character in String 
+  // Example: 
+  var firstName = "Ezekiel"
+  var lastLetterOfFirstName = firstName[firstName.length -1];
+  console.log(lastLetterOfFirstName);
+  var lastName = "Monmouth"
+  var lastLetterOfLastName = lastName[lastName.length - 1];
+  console.log(lastLetterOfLastName)
+
+// Bracket Notation to Find Nth-to-Last Character in String
+  // Third-to-last letter:
+  var firstName = "Mozambique"
+  var thirdToLastLetterOfFirstName = firstName[firstName.length - 3];
+  console.log(thirdToLastLetterOfFirstName);
+  // Second-to-last letter:
+  var secondToLastLetterOfFirstName = firstName[firstName.length - 2];
+  console.log(secondToLastLetterOfFirstName);  
+
+// Word Blanks - Making a Mad Lib game:
+  function madLib(myNoun, myAdjective, myVerb, myAdverb) {
+    var wordBlanks = "";
+    wordBlanks += "The " + myAdjective + " " + myNoun + " " + myVerb + " to the store " + myAdverb + ".";
+    return wordBlanks;
+  }
+  console.log(madLib("idiot", "stupid", "slid", "moronically"));
+  console.log(madLib("fucktard", "close-minded", "moonwalked", "like MJ"));
+
+// Store Multiple Values With Arrays (Arrays allow you to store several peices of data in one place).
+  // start and end with a bracket.  Every element in an array is separated by a comma.  You can have 
+  // any data type for the element in an array.
+  // Example: 
+  var ourArray = ["John", 23];
+  var myArray = ["Quincy", 1];
+
+// Nested Arrays (when one of the elements in an array is an array, it's a nested array or a multi-dimensional array).
+  // Example 1
+  var ourArray = [["the universe", 42], ["everything", 101010]];
+  // Example 2
+  var myArray = [["Bulls", 23], ["White Sox", 45]];
+
+// Access Array Data with Indexes
+  // Example 1:  (👇🏼  👇🏼   👇🏼 These are indexes)
+  var ourArray = [50, 60, 70];
+  var ourData = ourArray[0]; 
+  console.log(ourData);
+  // Example 2:
+  var myArray = [50, 60, 70];
+  console.log(myArray[1]);
+
+// Modify Array Data with Indexes 
+  // Example 1
+  var ourArray = [18, 64, 99];
+  console.log(ourArray);
+  ourArray[1] = 45;
+  console.log(ourArray);
+  // Example 2 
+  var ourArray = [18, 64, 99];
+  ourArray[0] = 45;
+  console.log(ourArray);
+
+// Access Multi-Dimensional Arrays with Indexes
+  // Example 1
+  var myArray = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [[10, 11, 12], 13, 14]];
+    // accessing different arrays within an array:
+  var myData = myArray[2][1];  // = 8
+  console.log(myData);
+  var myData = myArray[3][2];  // = 14
+  console.log(myData);
+  var myData = myArray [3][0][1]  // = 11
+  console.log(myData);
+
+// Manipulate Arrays with push(): appending data to the end of an array.
+  // Example:
+  var ourArray = ["Stimpson", "J", "cat"];
+  ourArray.push(["happy", "joy"]);
+  console.log(ourArray);
