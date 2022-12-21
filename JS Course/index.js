@@ -587,3 +587,320 @@ console.log(myStr);
     return "False, it's equal";
   }
   console.log(testStrictNotEqual('99'));
+
+// Comparison with the Logical and Operator
+  // Example: 
+  function testGreaterThan(val) {
+    if (val > 100) {
+      return "Over 100";
+    }
+    if (val == 100) {
+      return "Equal to 100";
+    }
+      return "Under 100";
+  }
+  console.log(testGreaterThan(100));
+
+// Comparison with the Greater Than or Equal To Operator
+  // Example:
+  function greaterThanOrEqualTo(val) {
+    if (val >= 20) {                // notice the values go down when it's greater than or equal to
+      return "20 or over";
+    }
+    if (val >= 10) {
+      return "10 or over"
+    }
+    return "Less than 10";
+  }
+  console.log(greaterThanOrEqualTo(9))
+
+// Comparison with the Less Than Operator
+  // Example
+  function lessThan(val) {
+    if (val < 10) {             //notice the (val) equations have to go up when less than or equal to
+      return "Less Than 10";
+    }
+    if (val < 20) {
+      return "Less Than 20";
+    }
+    return "20 or over"
+  }
+  console.log(lessThan(19));
+
+// Comparison with the Less Than Or Equal To Operator
+  // Example
+  function lessThanOrEqualTo(val) {
+    if (val <= 10) {                //notice the (val) equations have to go up when less than or equal to
+      return "10 or less";
+    }
+    if (val <= 20) {
+      return "20 or less";
+    }
+    return "Over 20";
+  }
+  console.log(lessThanOrEqualTo(9))
+
+// Comparison with the Logical And Operator: checking if two things are true at the same damn time.
+  // then logically you need two If Statements.  However you can write that shorter.
+  // Example 1 (this is writing it the long way *bad practice*):
+  function testLogicalAnd(val) {
+    if (val <= 50) {
+      if (val >= 25) {          // this is a "Nested If Statemet". *Bad Practice*
+        return "Within 25-50";
+      }
+      return "Either larger than 50 or smaller than 25";
+    }
+  }
+  console.log(testLogicalAnd(26))
+  // Example 2 (this is the shorter way of writing the same as Ex: 1):
+  function testLogicalAnd(val) {
+    if (val <= 50 && val >= 25) {  //with &&, both sides have to be true to return a true statement.
+      return "Within 25-50";
+    }
+    return "Either larger than 50 or smaller than 25";
+  }
+  console.log(testLogicalAnd(120))
+
+// Comparisons with the Logical Or Operator: testing if ONE OF TWO sides is true
+  // Example 1 (*Bad Practice*)
+  function testLogicalOr(val) {
+    if (val < 10) {
+      return "Outside";
+    }
+    if (val > 20) {
+      return "Outside";
+    }
+    return "Inside";
+  }
+  // Example 2: 
+  function testLogicalOr(val) {
+    if (val < 10 || val > 20) {
+      return "Outside";
+    }
+    return "Inside";
+  }
+  console.log(testLogicalOr(11))
+
+// If-Else Statements: an alternate block of code which can be executed if an IF statemet is not true.
+  // Example 1: 
+  function testElse(val) {
+    if (val > 5) {
+      return "Greater Than 5";
+    } 
+    else {
+      return "5 or smaller"
+    }
+  }
+  console.log(testElse(4));
+
+// If-ElseIf-Else Statements
+  // Example
+  function testElseIf(val) {
+    if (val > 10) {
+      return "Greater than 10";
+    }
+    else if (val < 5) {
+      return "Greater than 5";
+    }
+    else {
+      return "Between 5 and 10";
+    }
+  }
+  console.log(testElseIf(6));
+
+// Logical Order in If Else Statements: (If the (val)s are in the wrong order, they won't return the desired result.  Once the first condition is met, it doesn't check the rest of the conditions.)
+  // Example:
+  function orderMyLogic(val) {
+    if (val < 5) {
+      return "Less Than 5";
+    }
+    else if (val < 10) {
+      return "Less Than 10";
+    }
+    else {
+      return "Greater than or equal to 10";
+    }
+  }
+  console.log(orderMyLogic(9));
+
+// Chaining If-Else Statements
+  // Example: 
+  function testSize(num) {
+    if (num <= 5) {
+      return "Tiny";
+    }
+    else if (num <= 10) {
+      return "Small";
+    }
+    else if (num <= 15) {
+      return "Medium";
+    }
+    else if (num <= 20) {
+      return "Large";
+    }
+    else {
+      return "Huge";
+    }
+  }
+  console.log(testSize(21))
+
+// Golf Code
+  let nicknames = ["Hole-in-one!!!!", "Albatross!!!", "Eagle!!", "Birdie!", "Par", "Bogey", "Double Bogey", "Triple Bogey", "Quadruple Bogey", "Go home, you suck at golf!"]
+  function golfScore(par, strokes) {
+    if (strokes === 1) {
+      return nicknames[0];
+    }
+    else if (strokes === par - 3) {
+      return nicknames[1];
+    }
+    else if (strokes === par - 2) {
+      return nicknames[2];
+    }
+    else if (strokes === par -1) {
+      return nicknames[3];
+    }
+    else if (strokes === par) {
+      return nicknames[4];
+    }
+    else if (strokes === par +1) {
+      return nicknames[5];
+    }
+    else if (strokes === par + 2) {
+      return nicknames[6];
+    }
+    else if (strokes === par + 3) {
+      return nicknames[7];
+    }
+    else if (strokes === par + 4) {
+      return nicknames[8];
+    }
+    else {
+      return nicknames[9]
+    }
+  }
+  console.log(golfScore(4, 2));
+  console.log(golfScore(3, 1));
+  console.log(golfScore(3, 2));
+  console.log(golfScore(5, 2));
+  console.log(golfScore(5, 5));
+  console.log(golfScore(5, 7));
+  console.log(golfScore(5, 20));
+  console.log(golfScore(5, 1));
+
+// Switch Statements: instead of using a chained if-elseif-else statement, you can use a Switch Statement.
+  // Example
+  function caseInSwitch(val) {
+    var answer = "";
+    switch(val) {
+      case 1:             // this uses the strict equality operator "===". Basically saying "if (case === 1) {return "alpha"}".
+        answer = "alpha";
+        break;            // you need a "break;" statement after each "case" so it doesn't run to the next case.
+      case 2: 
+        answer = "beta";
+        break;
+      case 3: 
+        answer = "gamma";
+        break;
+      case 4: 
+        answer = "delta";
+        break;
+    }
+    return answer;
+  }
+  console.log(caseInSwitch(2));
+
+// Default Option in Switch Statements: similar to the "Else" in an If-Else statement.
+  // Example 
+  function switchOfStuff(animal) {
+    let answer = "";
+    switch (animal) {
+      case "a":
+        answer = "apple";
+        break;
+      case "b":
+        answer = "bird";
+        break;
+      case "c": 
+        answer = "cat";
+        break;
+      case "d":
+        answer = "dog";
+        break;
+      default:      // this default statement returns a value when the answer isn't "a", "b", or "c".
+      answer = "none of the above";
+      break;
+    }
+    return answer;
+  }
+  console.log(switchOfStuff("e"));
+
+// Multiple Identical Options in Switch Statements: when you want a switch statement where multiple inputs give the same output.
+  // You want to omit the "break" statement to do this.  
+  // Example:
+  function sequentialSizes(size) {
+    let answer = "";
+    switch (size) {
+      case 1: 
+      case 2:
+      case 3:
+        answer = "low";
+        break;
+      case 4:
+      case 5: 
+      case 6:
+        answer = "mid";
+        break;
+      case 7: 
+      case 8:
+      case 9:
+        answer = "high";
+        break;
+    }
+
+    return answer;
+  }
+  console.log(sequentialSizes(8))
+
+// Replacing If-Else Chains with Switch
+  // If-Else Example:
+  function chainToSwitch1(val) {
+    let answer = "";
+    if (val === "bob") {
+      answer = "Marley";
+    }
+    else if (val === 42) {
+      answer = "the answer";
+    }
+    else if (val === 99) {
+      answer = "Missed me by this much!";
+    }
+    else if (val === 7) {
+      answer = "Ate Nine";
+    }
+    return answer;
+  }
+  console.log(chainToSwitch1(7))
+
+  // Switch Example with same elements:
+  function chaintoSwitch2(val) {
+    var caseAnswer = "";
+    switch(val) {
+      case "bob":
+        caseAnswer = "Marley";
+        break;
+      case 42:
+        caseAnswer = "The Answer";
+        break;
+      case 99:
+        caseAnswer = "Missed Me By This Much!";
+        break;
+      case 7:
+        caseAnswer = "Ate Nine";
+        break;
+      default: "nada"
+    }
+    return caseAnswer;
+  }
+  console.log(chaintoSwitch2(99))
+
+// Returning Boolean Values from Functions
