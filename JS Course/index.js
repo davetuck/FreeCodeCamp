@@ -317,8 +317,273 @@ console.log(myStr);
   var myData = myArray [3][0][1]  // = 11
   console.log(myData);
 
-// Manipulate Arrays with push(): appending data to the end of an array.
-  // Example:
+// Manipulate Arrays with push(): adding an element to the END of an array.
+  // Example 1:
   var ourArray = ["Stimpson", "J", "cat"];
   ourArray.push(["happy", "joy"]);
   console.log(ourArray);
+  // Example 2:
+  var myArray = [["John", 23], ["cat", 2]]
+  myArray.push(["dog", 3])
+  console.log(myArray);
+
+// Manipulate Arrays with pop(): removing the FINAL element from an array.
+  // Example 1:
+  var ourArray = [1, 2, 3];
+  var removedFromOurArray = ourArray.pop();
+  console.log(ourArray);
+  // Example 2: 
+  var myArray = [["John", 23], ["cat", 2, 4]];
+  var removedFromMyArray = myArray.pop();
+  console.log(myArray);
+
+// Manipulate Arrays with shift(); removing the FIRST element from an array.
+  // Example 1: 
+  var ourArray = ["Stimpson", "J", ["cat"]];
+  var removedFromOurArray = ourArray.shift();
+  console.log(ourArray);
+  // Example 2:
+  var myArray = [["John, 23"], ["dog", 3]];
+  var removedFromMyArray = myArray.shift();
+  console.log(myArray);
+
+// Manipulate Arrays with unshift(); adding an element to the START of an array.
+  // Example 1:
+  var ourArray = ["Stimpson", "J", "cat"];
+  ourArray.shift();   // ourArray now equals ["J", "cat"];
+  ourArray.unshift("Happy");
+  console.log(ourArray);
+  // Example 2:
+  var myArray = [["John", 23], ["dog", 3]];
+  myArray.shift();
+  myArray.unshift(["Dave", 32]);
+  console.log(myArray);
+
+// Shopping List (Nested Arrays);
+  // Example
+  var myList = [["cereal", 3], ["milk", 2], ["bananas", 3], ["juice", 2], ["eggs", 12]];
+
+// Write Reusable Code with Functions
+  // Example 1
+  //        👇🏼 Function Name 
+  function ourReusableFunction() {
+    console.log("Heyya, World")
+  }
+  ourReusableFunction();  // anything inside the curly bracket is run when the function is called, like on this line.
+  ourReusableFunction();
+  ourReusableFunction();
+  // Example 2
+  function reusableFunction() {
+    console.log("Hi World!");
+  }
+  reusableFunction();
+  reusableFunction();
+
+// Passing Values to Functions with Arguments;
+  // Example 1:
+            // Parameters are 👇🏼  👇🏼  Variables that act as placeholders for the values that are to be input to a function when it is called.
+  function ourFunctionWithArgs(a, b) {  // 👈🏼 declaring the variables
+    console.log(a - b);
+  }
+  ourFunctionWithArgs(10, 5);  // Outputs 5
+            // These  👆🏼  👆🏼 are the Arguments which assign the Variables a value.
+  // Example 2
+  function functionWithArgs(a, b) {
+    console.log(a + b);
+  }
+  functionWithArgs(5, 4);  // Outputs 9
+
+// Global Scope and Functions; "Scope" refers to the visibility of variables.  
+  // Variables which are defined outside of the function block have "Global Scope".
+  // Global Scope means they can be seen everywhere in your JavaScript code.
+  // Example 1
+    // Declare your variable here
+    var myGlobal = 10;  // this variable is global
+
+    function fun1() {
+      oopsGlobal = 5;  // you don't use the "var" keyword before oopsGlobal, this becomes global automatically.
+    }
+
+    function fun2() {
+      var output = ""; // this is defining the variable "output".
+      if (typeof myGlobal != "undefined") {  // this asks if myGlobal is not equal to "undefined".  Since myGlobal is defined globally, it will run within this 'if statement'."
+        output += "myGlobal: " + myGlobal;
+      }
+      if (typeof oopsGlobal != "undefined") {  // since oopsGlobal isn't defined globally, this function returns undefined.
+        output += " oopsGlobal " + oopsGlobal;
+      }
+      console.log(output);
+    }
+    fun1();
+    fun2();
+
+// Local Scope and Functions
+  // Variabled declared within a function, as well as the function Parameters, have local scope. 
+  // This means that they are only visible from within the function.
+  // Example
+  function myLocalScope() {
+    var myVar = 5;
+    console.log(myVar);
+  }
+  myLocalScope();
+
+// Global vs. Local Scope in Functions
+  // It is possible to have both local and global variables with the same name.
+  // Local variables take precedent over global variables.
+  // Example 1
+  var outerWear = "T-Shirt";  // variable defined globally
+  function myOutfit1() {
+    var outerWear = "Jacket";  // variable defined locally
+    console.log(outerWear);   
+  }
+  myOutfit1();                // returns "Jacket"
+  // Example 2 
+  var outerWear = "T-Shirt";   // variable defined globally
+  function myOutfit2() {
+    var outerWear = "Sweater";  // variable defined locally
+    return outerWear;
+  }
+  console.log(myOutfit2());    // function returns the locally defined variable "Sweater".
+  console.log(outerWear);     // log returns "T-Shirt" since this is defined globally
+
+// Return a Value from a Function with Return
+  // Example 1
+  function minusSeven(num) {
+    return num - 7;           
+  }
+  console.log(minusSeven(10));  // this is how you call a function with a return
+  // Example 2
+  function timesFive (num) {
+    return num * 5;
+  }
+  console.log(timesFive(10));  // call the function here
+
+// Understanding "Undefined" Value Returned from a Function 
+  // Example 1
+  var sum = 0;           // variable is defined before the function, so it doesn't return anything.
+  function addThree() {  // this function's value is "Undefined" since the return value isn't specified.
+    sum = sum + 3;      
+  }
+  // Example 2
+  function addFive() {   
+    sum += 5;           // this is the same as writing "sum = sum + 5"
+  }
+
+// Assignment with a Returned Value
+  // Example 1:
+  var changed = 0;  // declaring the variable here, assigning it to zero.
+  function change(num) {
+    return (num + 5) / 3;
+  }
+  changed = change(10);  // modifying the variable with the function
+  console.log(changed);  // results in 5 ((10 + 5) / 3);
+  // Example 2:
+  var processed = "";  // declaring the variable, assigning it to nothing.
+  function processArg(num) {
+    return (num + 3) / 5;
+  }
+  processed = processArg(10);
+  console.log(processed);  // results in 2.6 ((10 + 3) / 5);
+
+// Stand In Line
+  // In CS, a QUEUE is an abstract data structure where items are kept in order.
+   // New items can be added to the back of the queue, and old items are taken from the fron of the queue.
+  // Example
+  function nextInLine(arr, item) {
+    arr.push(item);       // here we add the element (item) to the end of the array;
+    return arr.shift();   // here we remove the first element from the array (1);
+  }
+  var testArr = [1, 2, 3, 4, 5];
+
+  console.log("Before: " + JSON.stringify(testArr));  // "JSON.stringify" is just a way to turn an Array into a string.
+  console.log(nextInLine(testArr, 6));                // this calls the function, which removes the 1 and adds the 6.
+  console.log("After: " + JSON.stringify(testArr));   // we're logging the result now that the 1 has been removed and the 6 added, both donen by the function.
+
+
+// Boolean Values: another data type with two values, true or false.
+  // basically on/off switches where true is on, and false is off.
+  function welcomeToBooleas() {
+    return true;
+  }
+
+// Use Conditional Logic with If Statments
+  // If statements are used to make decisions in code.  
+  // Example 1:
+  function ourTrueOrFalse(isItTrue) {
+    if (isItTrue) {         // if the variable in the parenthesis is true, the code within the curly brackets will run.
+      return "Yes, it's true"
+    }
+    return "No, it's false" // if the variable in the parenthesis is not true, this return statement runs.
+  }
+  console.log(ourTrueOrFalse(false));
+  // Example 2:
+  function trueOrFalse(wasThatTrue) {
+    if (wasThatTrue) {
+      return "Yes, that was true."
+    }
+    return "No, that was not true."
+  }
+  console.log(trueOrFalse(true));
+
+// Comparison with the Equality Operator
+  // There are many comparison operators in JS.  Common one is the equality operator, which is the double = "==" sign.
+  // Example 1:
+  function testEqual(val) {
+    if (val == 12) {   // have to use a double equals sign, because single would mean that the val variable equals 12.
+      return "Equal to one.";
+    }
+    return "Not equal to one.";
+  }
+  console.log(testEqual(10));
+
+// Comparison with the STRICT Equality Operator 
+  // Strict is the triple equals "===" sign.
+  // == attempts to convert both values being compared to a common type
+  // === this does not do the type-conversion
+      // 3 == 3; true
+      // 3 == '3'; true
+      // 3 === 3; true
+      // 3 === '3'; false
+  // Example 1:
+  function testStrict1(val) {
+    if (val === 10) {
+      return "True";
+    }
+    return "False";
+  }
+  console.log(testStrict1('10'));  // this returns "False"
+  // Example 2:
+  function testStrict2(val) {
+    if (val === '10') {
+      return "True";
+    }
+    return "False";
+  }
+  console.log(testStrict2('10'));  // this returns "True"
+
+// Practice Comparing Different Values 
+  function compareEquality(a, b) {
+    if (a === b) {
+      return "Equal";
+    }
+    return "Not Equal";
+  }
+  console.log(compareEquality(10, "10"));
+
+// Comparison with the Inequality Operator
+  function testNotEqual(val) {
+    if (val != 99) {
+      return "True, it's Not Equal";
+    }
+    return "False, it's Equal";
+  }
+  console.log(testNotEqual('99'));  // Showing that again, double characters "!=" change the type to be similar, so this yields "Equal".
+
+// Comparisoin with the Strict Inequality Operator
+  function testStrictNotEqual(val) {
+    if (val !== 99) {
+      return "True, it's not equal";
+    }
+    return "False, it's equal";
+  }
+  console.log(testStrictNotEqual('99'));
