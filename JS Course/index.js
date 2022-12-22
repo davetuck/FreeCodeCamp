@@ -904,3 +904,118 @@ console.log(myStr);
   console.log(chaintoSwitch2(99))
 
 // Returning Boolean Values from Functions
+  // Example function:
+  function isLess1(a, b) {
+    if (a < b) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  console.log(isLess1(1, 2));
+
+  // You can change that function to:
+  function isLess2(a, b) {
+    return a < b;
+  }
+  console.log(isLess2(4, 2));
+
+// Returning Early Pattern from Functions: typically we've had "return" at the end, but you can leave the function anytime throughout it with a "return" statement.
+  function abTest(a, b) {
+    if (a < 0 || b < 0) {
+      return "undefined";
+    }
+    else {
+      return "defined";
+    }
+    return Math.round(math.pow(math.sqrt(a) + math.sqrt(b), 2));  // this example return is not relevant due to the previous returns.
+  }
+  console.log(abTest(-3, 2))
+
+// Card Counting: BlackJack Counting Function
+  // Low card, count goes up
+  // High Card, count goes down
+  // Middle card, count stays the same
+  // Count positive, bet high
+  // Zero or negative, bet low
+  // My Attempt (If Statements):
+  let count = 0
+  let betOrNot = ""
+  function cardCounting(card) {
+    if (card < 7) {
+      count++;
+      if (count > 0) {
+        betOrNot = "Bet Now!";
+      }
+      else {
+        betOrNot = "Hold Now!"
+      }
+    }
+    else if (card < 10) {
+      count = count;
+      if (count > 0) {
+        betOrNot = "Bet Now!";
+      }
+      else {
+        betOrNot = "Hold Now!"
+      }
+    }
+    else {
+      count--;
+      if (count > 0) {
+        betOrNot = "Bet Now!";
+      }
+      else {
+        betOrNot = "Hold Now!"
+      }
+    }
+    return count + " " + betOrNot;
+  }
+  console.log(cardCounting(2));
+  console.log(cardCounting(10));
+  console.log(cardCounting("K"));
+  console.log(cardCounting(7));
+  console.log(cardCounting(7));
+  console.log(cardCounting(7));
+  console.log(cardCounting("J"));
+  console.log(cardCounting(3));
+  console.log(cardCounting(3));
+  console.log(cardCounting(3));
+  console.log(cardCounting(3));
+
+  // Their example (Switch Statements):
+  var cardCount = 0;
+  function cc(card) {
+    switch(card) {
+      case 2: 
+      case 3: 
+      case 4: 
+      case 5: 
+      case 6: 
+        cardCount++;
+        break;
+      case 10: 
+      case "J": 
+      case "Q": 
+      case "K": 
+      case "A": 
+        cardCount--;
+        break;
+    }
+    var holdOrBet = "Hold!"
+    if (cardCount > 0) {
+      holdOrBet = "Bet!";
+    }
+    return cardCount + " " + holdOrBet;
+  }
+  console.log(cc(2));
+  console.log(cc("K"));
+  console.log(cc("Q"));
+  console.log(cc(4));
+  console.log(cc(6));
+  console.log(cc(7));
+  console.log(cc(8));
+  console.log(cc("J"));
+  console.log(cc(3));
+  console.log(cc("A"));
