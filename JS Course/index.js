@@ -1,4 +1,5 @@
 /* 
+https://www.youtube.com/watch?v=PkZNo7MFNFg&t=35s
 7 different Data Types:
 - undefined: something that hasn't been defined, a variable you haven't set to be anything.
 - null: nothing.  When you set it to be something, and that thing is nothing.
@@ -1212,3 +1213,235 @@ console.log(myStr);
       "gold": false
     }
   ];
+
+// Accessing Nested Objects
+  // Example
+  var myStorage = {
+    "car": {
+      "inside": {
+        "glove box": "maps",
+        "passenger seat": "crumbs"
+      },
+      "outside": {
+        "trunk": "jack"
+      }
+    }
+  };                                         // 👇🏼 has to have brackets because of the space
+  var gloveBoxContents = myStorage.car.inside["glove box"]; 
+  var trunkContents = myStorage.car.outside.trunk;
+
+  console.log(gloveBoxContents);
+  console.log(trunkContents);
+
+// Accessing Nested Arrays
+  var myPlants = [
+    {
+      type: "flowers",
+      list: [
+        "rose",
+        "tulip",
+        "dandelion"
+      ]
+    },
+    {
+      type: "trees",
+      list: [
+        "fir",
+        "pine",
+        "birch"
+      ]
+    }
+  ];                    // 👇🏼 second element in the myPlants array
+  var secondTree = myPlants[1].list[1];
+  console.log(secondTree);       // 👆🏼 second element of the list array
+  var thirdFlower = myPlants[0].list[2];
+  console.log(thirdFlower);  // this returns "dandelion"
+
+// Record Collection  REDO THIS ONE, I DIDN'T REALLY FOLLOW IT!!
+  // Challenge
+  var collection = {
+    "2548": {
+      "album": "Slippery When Wet",
+      "artist": "Bon Jovi",
+      "tracks": [
+        "Let It Rock",
+        "You Give Love A Bad Name"
+      ]
+    },
+    "2468": {
+      "album": "1999",
+      "artist": "Prince",
+      "tracks": [
+        "1999",
+        "Little Red Corvette"
+      ]
+    },
+    "1245": {
+      "artist": "Rob Palmer",
+      "tracks": []
+    },
+    "5439": {
+      "album": "ABBA Gold",
+    },
+  }                   // 👇🏼 this is just a fancy JS way of making a copy of the object
+  var collectionCopy = JSON.parse(JSON.stringify(collection));
+  function updateRecords(id, prop, value) {
+    if (value === "") {
+      delete collection[id][prop];
+    }
+    else if (prop === "tracks") {
+      collection[id][prop] = collection[id][prop] || [];
+      collection[id][prop].push(value);
+    }
+    else {
+      collection[id][prop] = value;
+    }
+
+    return collection;
+  }
+
+  console.log(updateRecords(5439, "artist", "ABBA"));
+  console.log(updateRecords(2468, "tracks", "test"));
+
+// Iterate with While Loops (Loops allow you to run the same code multiple times).
+  // "While" Loops run while a specified condition is true and stops once it's no longer true.
+  var myArray = [];  // we are going to push the digits 0-4 on to this array.
+  var i = 0;         // this is what i starts at.
+  while(i < 5) {
+    myArray.push(i); // .push adds to the array
+    i++;            // this ensures the loop eventaully ends (incrementing i by 1).
+  }
+  console.log(myArray);  // this returns 5 values: 0, 1, 2, 3, 4
+
+// Iterate with For Loops (the most common type of loop in JS).
+  var ourArray = [];
+    // 👇🏼 initialization; condition; and final expression 
+  for (var i = 0; i < 100; i += 2) {  // += is how you say i = i + x
+    ourArray.push(i);
+  }
+  console.log(ourArray); // 50 results, increments of 2 from 0 - 100
+
+  var myArray = [];
+  for (var i = 1; i <= 50; i++) {
+    myArray.push(i);
+  }
+  console.log(myArray);  // 50 results, increments of 1 from 1 - 50
+
+// Iterate Odd/Even Numbers with a For Loop
+  // Odd numbers
+  var oddArray = [];
+  for (var i = 1; i < 26; i += 2) {
+    oddArray.push(i);
+  }
+  console.log(oddArray);
+
+  // Even numbers
+  var evenArray = [];
+  for (var i = 0; i < 26; i += 2) {
+    evenArray.push(i);
+  }
+  console.log(evenArray);
+
+// Count backwards with a For Loop
+  // Even Numbers
+  var backwardsArrayEven = [];
+  for (var i = 100; i > 0; i -= 2) {
+    backwardsArrayEven.push(i);
+  }
+  console.log(backwardsArrayEven);
+
+  // Odd Numbers
+  var backwardsArrayOdd = [];
+  for (var i = 99; i  > 0; i -= 2) {
+    backwardsArrayOdd.push(i);
+  }
+  console.log(backwardsArrayOdd);
+
+// Iterate Through an Array with a For Loop  (this is basically counting how many values there are in the array, and adding them to each other)
+  // Typcially we have added items to an array.  If an array already exists, we can iterate through it with a For Loop.
+  var ourArr = [9, 10, 11, 12];
+  var ourTotal = 0;
+  for (var i = 0; i < ourArr.length; i++) {
+    ourTotal += ourArr[i];
+  }
+  console.log(ourTotal);  
+  // Example 2: 
+  var myArr = [2, 3, 4, 5, 6];
+  var myTotal = 0;
+  for (var i = 0; i < myArr.length; i++) {
+    myTotal += myArr[i];
+  }
+  console.log(myTotal);
+
+// Nesting For Loops
+  // if you have a multi-dimesional (or nested) Array, you can use a Nested For Loop to access all the Array elements.
+  function multiplyAll(myArray) {
+    var product = 1;
+    for (var i = 0; i < myArray.length; i++) {        // this line is multiplying all the answers to this 👇🏼 together
+      for (var j = 0; j < myArray[i].length; j++) {  // basically this line is multiplying all the blue arrays together (arrays within the arrays)
+        product *= myArray[i][j];                    // basically saying product = product * myArray [outer array][inner arrays]
+      }
+    }
+
+    return product;
+  }
+  var product = multiplyAll([[1, 2], [3, 4], [5, 6, 7]]);
+  console.log(product); // answer is 5040 = (1*2)*(3*4)*(5*6*7) 
+
+// Iterate with Do...While Loops
+  // While loops first checks the condition before running any code.
+  // A Do...While Loop always runs at least one time, and then it will check the condition.
+  var myArray = [];
+  var i = 10;
+  // This is a While Loop:
+  while (i < 5) {    // this isn't going to do anything in the array because the array starts out higher than 5 (the condition (i < 5)).
+    myArray.push(i);
+    i++;
+  }
+  console.log(i, myArray);  // this equals 10 and an empty array [].
+  // This is a Do...While Loop:
+  do {
+    myArray.push(i);   //this is run at least once before it checks the condition (i < 5).
+    i++;
+  } 
+  while (i < 5);  // in this case, once it checks the condition it will break out of the loop.
+  console.log(i, myArray);  // this equals 11 and [10].
+
+// Profile Lookup
+  // Challenge
+  var contacts = [ 
+      {
+      "firstName": "Akira",
+      "lastName": "Laine",
+      "number": "0543236543",
+      "likes": ["Pizza", "Coding", "Brownie Points"]
+    },
+      {
+      "firstName": "Harry",
+      "lastName": "Potter",
+      "number": "0994372684",
+      "likes": ["Hogwarts", "Magic", "Hagrid"]
+    },
+      {
+      "firstName": "Sherlock",
+      "lastName": "Holmes",
+      "number": "0487345643",
+      "likes": ["Intriguing Cases", "Violin"]
+    },
+      {
+      "firstName": "Kristian",
+      "lastName": "Vos",
+      "number": "unknown",
+      "likes": ["JavaScript", "Gaming", "Foxes"]
+    },
+  ];
+  function lookUpProfile(name, prop) {
+    for (var i = 0; i < contacts.length; i++) {   //this is basically checking each value to see if the value we pass in the function is present.
+      if (contacts[i].firstName === name) {       // this is checking if the parameter you passed in === any of the values in the array.
+        return contacts[i][prop] || "No such property."         // if it finds the name, return the associated property with the name.  The OR || property is used instead of the "else" here, to be fancy.
+      }      
+    }
+    return "No such contact.";
+  }
+  var data = lookUpProfile("Harry", "likes");
+  console.log(data);
