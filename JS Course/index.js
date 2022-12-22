@@ -934,11 +934,11 @@ console.log(myStr);
   console.log(abTest(-3, 2))
 
 // Card Counting: BlackJack Counting Function
-  // Low card, count goes up
-  // High Card, count goes down
-  // Middle card, count stays the same
-  // Count positive, bet high
-  // Zero or negative, bet low
+  // Low card (2-6), count goes up
+  // High Card (10-A), count goes down
+  // Middle card (7-9), count stays the same
+  // Count is positive, bet high
+  // Zero or negative, hold bets
   // My Attempt (If Statements):
   let count = 0
   let betOrNot = ""
@@ -1019,3 +1019,196 @@ console.log(myStr);
   console.log(cc("J"));
   console.log(cc(3));
   console.log(cc("A"));
+
+// Build JavaScript Objects: 
+  // Ojects are similar to Arrays, but instead of using indexes to access data, you use properties.
+  var ourDog = {        // Objects are defined with curly brackets.
+    "name": "Camper",   // the Properties are everything before the colon.
+    "legs": 4,          // the Values are everything after the colon.
+    "tails": 1,
+    "friends": ["everything"]
+  };
+  var myDog = {         // this is another example of an Object.
+    "name": "Quincy",
+    "legs": "3",
+    "tails": "2",
+    "friends": [0]      // use commas between each Property/Value until the final one, nothing after it.
+  }
+
+// Accessing Object Properties
+  // Three main ways to access a Property on an Object
+  // Method 1: Dot Notation (available when there's no space in the Properties or the Values)
+  let testObj = {
+    "hat": "fitted",
+    "hatSize": 7.75,
+    "shirt": "jersey",
+    "shirtSize": "L",
+    "shoes": "cleats",
+    "number": 23
+  };
+  let hatValue = testObj.hat;
+  let hatSize = testObj.hatSize;
+  let shirtValue = testObj.shirt;
+  let shirtSize = testObj.shirtSize;
+  let playerNumber = testObj.number;
+  console.log(hatValue);
+  console.log(shirtValue);
+  console.log(playerNumber, hatValue, hatSize, shirtValue, shirtSize);
+  
+  // Method 2: Bracket Notation (used when there is a space in the properties or the values).
+    // Can not duplicate within console.log apparently.
+  let testObj2 = {
+    "an entree": "hamburger helper",
+    "my side": "veggies blackened",
+    "my drink": "water no ice"
+  };
+  let myMealValue = testObj2["an entree"];
+  let mySideValue = testObj2["my side"];
+  let myDrinkValue = testObj2["my drink"];
+  console.log(myMealValue);
+  console.log(mySideValue);
+  console.log(myDrinkValue);
+
+  // Method 3: Variables
+  let testObj3 = {
+    12: "Namath",
+    16: "Montana",
+    19: "Unitas"
+  }
+  let qbNumber = 19;
+  let qb = testObj3[qbNumber];
+  console.log(qb);
+
+// Updating Object Properties (you can use Dot notation to do so).
+  var ourDog = {
+    "name": "Camper",
+    "legs": 4,
+    "tails": 1,
+    "friends": ["everything!"]
+  };
+  ourDog.name = "Happy Camper";  // this is where the variable is updated.
+  console.log(ourDog.name);
+
+// Add new Properties to an Object (can use Dot Notation OR Bracket Notation)
+  var ourDog = {
+    "name": "Camper",
+    "legs": 4,
+    "tails": 1,
+    "friends": ["everything"]
+  }
+  ourDog.bark = "bow-wow!";  // Dot Notation
+  console.log(ourDog);   //ourDog now includes bark: "bow-wow!"
+
+  var myDog = {
+    "name": "Happy Coder",
+    "legs": 4,
+    "tails": 1,
+    "friends": ["freeCodeCamp Campers"]
+  }
+  myDog['bark'] = "woof!";  // Bracket Notation
+  console.log(myDog);       // myDog now includes bark: "woof!"
+
+// Delete Properties from an Object
+  // 'delete' keyword
+  var ourDog = {
+    "name": "Camper",
+    "legs": 4,
+    "tails": 1,
+    "friends": ["everything"],
+    "bark": "bow-wow!"
+  }
+  delete ourDog.bark;  // you can use the delete keyword to get rid of a Property.
+  console.log(ourDog);
+
+// Using Objects for Lookups
+  // Objects can be thought of as a key-value storage like a dictionary.
+  // You can use an Object to look up Values rather than a Switch or If statement.
+  // THIS IS THE SAME AS...
+  function phoneticSwitchLookup(val) {
+    var result = "";
+    switch(val) {       // we can replace this Switch Statement with an Object, and use the Object for lookups.
+      case "alpha":
+        result = "Adams";
+        break;
+      case "bravo":
+        result = "Boston";
+        break;
+      case "charlie":
+        result = "Chicago";
+        break;
+      case "delta":
+        result = "Denver";
+        break;
+      case "echo":
+        result = "Easy";
+        break;
+      case "foxtrot":
+        result = "Frank";
+        break;
+    }
+    return result;
+  }
+  console.log(phoneticSwitchLookup("foxtrot"));
+  // THIS:
+  function phoneticObjectLookup(val) {
+    var result = "";
+    var lookup = {
+      "alpha": "Adams",
+      "bravo": "Boston",
+      "charlie": "Chicago",
+      "delta": "Denver",
+      "echo": "Easy",
+      "foxtrot": "Frank"
+    };
+    result = lookup[val];
+    return result;
+  }
+  console.log(phoneticObjectLookup("bravo"));
+  console.log(phoneticObjectLookup("echo"));
+
+// Testing Objects for Properties
+  // Checking if an Object has a Property with the hasOwnProperty method.
+  var myObj = {
+    gift: "pony",
+    pet: "kitten",
+    bed: "sleigh"
+  };
+  function checkObj(checkProp) {   // this function is checking if an Object (checkObj) has a specific Property (checkProp).
+    if (myObj.hasOwnProperty(checkProp)) {
+      return myObj[checkProp];
+    }
+    else {
+      return "Not Found";
+    }
+  }
+  console.log(checkObj("gift"));
+  console.log(checkObj("hello"));
+  console.log(checkObj("bed"));
+  console.log(checkObj("freak"));
+
+// Manipulating Complex Objects
+  // A JavaScript Object is a way to store flexible data.
+  // You can store Strings, Numbers, and Arrays, and even other Objects.
+  var myMusic = [           // Array
+    {                       // Objects
+      "artist": "Billy Joel",   // Key Value Pairs
+      "song title": "Piano Man",
+      "release year": 1973,
+      "formats": [
+        "CD",
+        "8T",
+        "LP"
+      ],
+      "gold": true
+    },
+    {                          // here's another Object
+      "artist": "Eminem",   
+      "song title": "Square Dance",
+      "release year": 2001,
+      "formats": [
+        "CD",
+        "Digital"
+      ],
+      "gold": false
+    }
+  ];
