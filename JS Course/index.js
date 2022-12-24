@@ -1445,3 +1445,304 @@ console.log(myStr);
   }
   var data = lookUpProfile("Harry", "likes");
   console.log(data);
+
+// Generate Random Fractions (this just generates a random fraction between zero and one).
+  function randomFraction() {
+
+    return Math.random();
+  }
+  console.log(randomFraction());
+
+// Generate Random Whole Numbers      👇🏼 Math.floor rounds down to the nearest whole number.
+  var randomNumberBetween0and19 = Math.floor(Math.random() * 20);  // this creates a random whole number between 0 and 19.
+  console.log(randomNumberBetween0and19);   // 👆🏼 fraction    👆🏼 creates a random number between 1 and 20, not including 20.
+  
+  function randomNumber() {                 
+    return Math.floor(Math.random()* 10);  //  this creates a random number between 0 and 10, not including 10.
+  }
+  console.log(randomNumber());
+
+// Generate Random Whole Numbers Within a Range 
+  // Example 1
+  function ourRandomRange (ourMin, ourMax) {
+    return Math.floor(Math.random() * (ourMax - (ourMin + 1))) + ourMin;
+  }
+  var ourRandom = ourRandomRange(100, 200);
+  console.log(ourRandom);
+
+  // Example 2
+  function randomRange(myMin, myMax) {
+    return Math.floor(Math.random() * (myMax - myMin + 1)) + myMin;
+  }
+  var myRandom = randomRange(45, 65);
+  console.log(myRandom);
+  
+// Use the parseInt Function: this function takes a string and returns an integer (a whole number, not a fraction).
+  function convertToInteger(str) {
+    return parseInt(str);
+  }
+  console.log(convertToInteger("56"));  // This is now changed from a string, "56", to a number, 56.
+
+// Use the parseInt Function with a Radix: the Radix specifies the base of the number in the string, such as base 2, base 7, or base 8.  Base 2 is binary so it's common, but the default is base 10.
+  function convertBinaryToInteger(str) {
+    return parseInt(str, 2);
+  }
+  console.log(convertBinaryToInteger("10001110101"));  //this number starts out as a binary
+
+// Use the Conditional (Ternary) Operator: the Ternary operator is like a one-line if-else expression.
+  // You can change this:
+  function checkEqual(a, b) {
+    if(a === b) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  };
+  console.log(checkEqual(3, 4));
+  
+  // In to this, using the Ternary Operator:
+  function checkEqualTernary(a, b) {
+    return a === b ? true : false;  // condition ? statement-if-true : statement-if-false;
+    // you would never write this line, as {return a === b;} would return true or false already, but this is just a simple example of the Ternary Operator.
+  }
+  console.log(checkEqualTernary(3, 4));
+
+// Use Multiple Conditional (Ternary) Operators: you can nest Ternary Operators within each other which gives them even more power.
+  // One nested Ternary Operator
+  function checkSign(num) {
+    return num > 0 ? "positive" : num < 0 ? "negative" : "zero";
+  }
+  console.log(checkSign(-8));
+  
+  // Two nested Ternary Operators
+  function checkSign2(num) {
+    return num > 100 ? "Over One Hundred" : num > 50 ? "Between 50 and 100" : num > 10 ? "Between 10 and 50" : "Less Than 10";
+  }
+  console.log(checkSign2(16));
+
+// Differences Between the var and let keywords:
+  // var is the old method.  Starting with es6 in 2015, let and const came around.
+  // let: does not let you declare a variable twice.  If you want to re-set a let, just omit using it and set the variable equal to whatever you want.
+  let catName = "Quincy";
+  let quote;
+
+  /* let */ catName = "Beau";
+  console.log(catName);  // "Beau" will be the catName variable in this case, ommitting let
+
+  function catTalk() {
+    "use strict";       // you can use "use strict"; this at the top of a JS file, or just in a function to catch coding mistakes.
+    catName = "Oliver";
+    quote = catName + " says Meow!";
+  }
+
+// Compare Scopes of the var and let Keywords
+  // var is declared globally, or throughout the entire function it was declared inside of.
+  // let is limited to the block {}, statement, or expression that it was declared in.
+  // Using var:
+  function checkScope() {
+    "use strict";
+      var i = "function scope";       // i is set to "function scope" for the outer brackets.
+      if (true) {
+        i = "block scope";            // now i is set to "block scope" for the entire function., and it will remain because it's the most recent global change with var.
+        console.log("Block scope i is: ", i);  // this returns "block scope"
+      }
+      console.log("Function scope i is: ", i); // this returns "block scope".
+      return i;
+  }
+  checkScope();
+  // Using let:
+  function checkScope2() {
+    "use strict";
+      let i = "function scope";       // i is set to "function scope" for the outer brackets.
+      if (true) {
+        let i = "block scope";            // now i is set to "block scope" for the inner brackets.  It only changes this expression because let is limited, NOT global.
+        console.log("Block scope i is: ", i);
+      }
+      console.log("Function scope i is: ", i);
+      return i;
+  }
+  checkScope2();
+
+// Declare a Read-Only Variable with the const Keyword
+  // const is another way to declare a variable
+  // it has all the features of let, but it's also read-only.
+  // you can not re-assign a const.
+  function printManyTimes(str) {
+    "use strict";
+    const SENTENCE = str + " is cool!"; // it's common to capitalize all the letters in a const, so you remember it's a const.
+    // SENTENCE = str + " is amazing!";  // this catches an error because const is not reassignable.
+    for(let i = 0; i < str.length; i+=2) {
+      console.log(SENTENCE);
+    }
+  };
+  printManyTimes("freeCodeCamp");
+
+// Mutate an Array Declared with const: 
+  // while you can't reassign a variable declared with const, you can mutate an array declared with const.
+  const s = [ 5, 7, 2];
+  function editInPlace() {
+    "use strict";
+    //s = [2, 5, 7]; // can't do this because you'll get an error for trying to reassign a const
+    s[0] = 2;
+    s[1] = 5;
+    s[2] = 7;
+  }
+  editInPlace();  // call the function
+  console.log(s);
+
+// Prevent Object Mutation
+  // a const declaration alone doesn't protect your data from mutation (above).
+  // object.freeze prevents data mutation.
+  function freezeObj() {
+    "use strict";
+    const MATH_CONSTANTS = {
+      PI: 3.14
+    };
+    Object.freeze(MATH_CONSTANTS);   // this freezes the value of all the MATH_CONSTANTS objects (PI)
+    try {
+      MATH_CONSTANTS.PI = 99;       // this is trying to change PI to 99, which works without Object.freeze
+    }
+    catch(ex) {                     // this returns if try doesn't work.  ex is for exception (or the error)
+      // console.log(ex);              // log the result
+    }
+    return MATH_CONSTANTS.PI;
+  }
+  const PI = freezeObj();
+  console.log(PI);
+
+// Use Arrow Functions to Write Concise Anonymous Functions
+  // Instead of writing this:
+  var magic = function() {    // this is an anonymous function.  it doesn't have a name, but it's assigned to a var (variable).
+    return new Date();
+  };
+  // You can write this:
+  var magic = () => {
+    return new Date();
+  };
+  // But you can shorten that even more:
+  var magic = () => new Date();
+  // And to make that even nicer, change it to const:
+  const magic1 = () => new Date();  // changed the variable to "magic1" because it will draw an error if it's "magic".
+
+// Write Arrow Functions with Parameters
+  // just like in a normal function, you can pass arguments to Arrow Functions
+  // This:
+  var myConcat = function(arr1, arr2) {
+    return arr1.concat(arr2);
+  };
+  console.log(myConcat([1, 2], [3, 4, 5]));
+  // Can be written like this:
+  var myConcat = (arr1, arr2) => arr1.concat(arr2);  // for good measure, you'd change var to const.
+  console.log(myConcat([1, 2], [3, 4, 5]));
+
+// Write Higher Order Arrow Functions
+  // Arrow functions work very well wit higher order functions, such as math, filter, and reduce.
+  // Whenever one function takes another function for an argument, that's a good time for an Arrow function.
+  const realNumberArray = [4, 5.6, -9.8, 3.14, 42, 6, 8.34, -2];
+  const squareList = (arr) => {
+    const squaredIntegers = arr.filter(num => Number.isInteger(num) && num > 0).map(x => x * x);  // main focus is to see how succinctly we can fit things on one line with the arrow => function.
+    return squaredIntegers;
+  };
+  const squaredIntegers = squareList(realNumberArray);
+  console.log(squaredIntegers);
+
+// Write Higher Order Arrow Functions (cont.)
+  // In order to create more flexible functions, you can use default parameters.
+  // Default parameters kick in when the argument is not specified or defined.
+  const increment = (function() {
+    return function increment(number, value = 1) {
+      return number + value;               // 👆🏼 now, if a value isn't passed in, it will be set to 1 automatically.  If it is passed in, it will be set to whatever's passed in.
+    };
+  })();
+  console.log(increment(5, 2)); 
+  console.log(increment(5));
+
+// Use the Rest Operator with Function Parameters
+  // The Rest Operator allows you to create a function with a variabled number of arguments.
+  // The Rest Operator is three dots.
+  // This:
+  var sum = (function() {
+    return function sum(x, y, z) {
+      const args = [x, y, z];
+      return args.reduce((a, b) => a +b, 0);
+    };
+  })();
+  console.log(sum(1, 2, 3));  // here, your number of arguments has to be three to match the three parameters (x, y, z).
+  // Can be written like this:
+  var sum = (function() { //👇🏼 this ... will convert everything that's passed in into one array, and that array is called args.
+    return function sum(...args) {
+      return args.reduce((a, b) => a +b, 0);
+    };
+  })();
+  console.log(sum(1, 2, 3, 4, 5));  // now you can add more arguments, and they will be passed in as an entire array.
+
+// Use the Spread Operator to Evaluate Arrays In-Place
+  // The Spread Operator looks just like the Rest Operator, but it expands an already existing array (or it spreads out an array).
+  // It takes an array and spreads it out into its individual parts.
+  // You can only use it in an argument to a function, or an array literal.
+  const arr1 = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN'];  // we're looking to spread this out in to the individual months, rather than an array.
+  let arr2;
+  (function() {
+    // arr2 = arr1;  this isn't what you want, because it just returns 'potato' for 'Jan' and copies the rest of the array.
+    arr2 = [...arr1];
+    arr1[0] = 'potato';
+  })();
+  console.log(arr2);
+
+// Use Destructuring Assingments to Assign Variables from Objects
+  // Special syntax for neatly assigning values, taken from an object to a variable. 
+  var voxel = {x: 3.6, y: 7.4, z: 6.54 };  // if we want to take each individual element in this object and assign it to its own variable..
+  // this is the old way of achieving this:
+  var x = voxel.x; //x = 3.6
+  var y = voxel.y; //y = 7.54
+  var z = voxel.z; //z = 6.54
+  // with Destructuring, there's a simpler and quicker way of assigning variables for each element in an object.
+  var {x:a, y:b, z:c} = voxel; // a = 3.6, b = 7.4, c = 6.54
+    // "get the field of x from the object, copy in to value a", "get the field of y from the object, copy it to value b", etc.
+
+  // Example (we want to extract the tomorrow variable from the AVG_TEMPERATURES object):
+  const AVG_TEMPERATURES = {
+    today: 77.5,
+    tomorrow: 79
+  }
+  function getTempOfTmrw(avgTemperatures) {
+    "use strict";
+    const {tomorrow:tempOfTomorrow} = avgTemperatures;
+        //  👆🏼 this says get the tomorrow field from the AVG_TEMPERATURES object, and assign it to the tempOfTomorrow variable.
+    return tempOfTomorrow;
+  }
+  console.log(getTempOfTmrw(AVG_TEMPERATURES));  // should be 79
+
+// Destructuring Assignment with Nested Objects
+  // Using destructuring to assign variables that are within nested objects.
+  const LOCAL_FORECAST = {    // 👈🏼 object
+    today: { min: 72, max: 83}, // 👈🏼 nested objects
+    tomorrow: {min: 73.3, max: 84.6}
+  };              // 👆🏼  values  👆🏼
+
+  function getMaxOfTmrw(forecast) {
+    "use strict";
+    const { tomorrow:{max:maxOfTomorrow}} = forecast; // this access the object within the object and returns it below.
+    return maxOfTomorrow;
+  }
+  console.log(getMaxOfTmrw(LOCAL_FORECAST));
+
+// Use Destructuring Assignment to Assign Variables from Arrays
+  //  we're assigning the variable z and x to the first two numbers in the array, 1 and 2.
+  // in arrays, you can't specify which element from the array to go in to a variable, they just go in order.
+  // if we want 4 to go in to a variable, we can add commas with nothing in them, which skip elements in the array.
+  var [z, x, , y] = [1, 2, 3, 4, 5, 6];
+  console.log(z, x, y);  // this returns 1, 2, 4
+
+  // you can also use Destructuring Arrays to swith the places of Variables
+  var a = 8, b = 6;
+  (() => {
+    "use strict";
+    [a, b] = [b, a];  // this switches the places of the variables.
+  })();
+  console.log(a);
+  console.log(b);
+
+// Use Destructuring Assignment with the Rest Operator
+  
