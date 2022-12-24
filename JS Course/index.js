@@ -1745,4 +1745,213 @@ console.log(myStr);
   console.log(b);
 
 // Use Destructuring Assignment with the Rest Operator
+  // Use this to reassign Arrays Elements.
+  // Example: (return the array with the first two elements removed)
+  const source = [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  function removeFirstTwo(list) {
+    const [ , , ...arr] = list;
+       //  👆🏼 this removes the first two elements, and the ... is the Rest Operator
+    return arr;
+  };
+  const arr = removeFirstTwo(source);
+  console.log(arr);  // this logs 8 entries, the first two elements are missing
+  console.log(source); // this logs 10 entries, all elements are present
+
+// Use Destructuring Assignment to Pass an Object as a Function's Parameters
+  // Commonly used with API calls
+  const stats = {
+    max: 56.78,
+    standard_deviation: 4.34,
+    median: 34.54,
+    mode: 23.87,
+    min: -.75,
+    average: 35.85
+  };
+  const half = (function () {
+    // return function half(stats) {  // doing this passes in the entire stats object
+    return function half({max, min}) {
+      //return (stats.max + stats.min) / 2.0;  // you don't need stats.max or stats.min now
+      return (max + min) / 2.0;
+    };
+  })();
+  console.log(stats);
+  console.log(half(stats));
+
+// Create Strings Using Temperate Literals
+  // Temperate Literals area a special type of string that makes creating complex strings easier.
+  // They require a back tick `` in place of single/double quotation marks.
+  // With back ticks, you can create double-line strings (below).
+    // You can also use single or double quotation marks in the string, and you don't have to escape them.
+    // You can put variables right in the string ie: ${person.name}
+  const person = {
+    name: "Zodiac Hasbro",
+    age: 56
+  };
+  const greeting = `Hello, my name is ${person.name}!  
+  I am ${person.age} years old.`;
+  console.log(greeting);
   
+// Coding Challenge: Create a list based on the array that's passed in.
+  const result = {
+    success: ["max-length", "no-amd", "prefer-arrow-functions"],
+    failure: ["no-var", "var-on-top", "linebreak"],
+    skipped: ["id-blacklist", "no-dup-keys"]
+  };
+  function makeList(arr) {
+    const resultDisplayArray = [];   // this line was changed from: const resultDisplayArray = null
+    for (let i = 0; i < arr.length; i++) {  //this for loop was added in
+      resultDisplayArray.push(`<li class="text-warning"${arr[i]}</li>`);  // this line was added in
+    }                                               //    👆🏼 variable
+    return resultDisplayArray;
+  };
+
+  /** We want it to look like this:
+   * makeList(result.failure) should return:
+   * [`<li class ="text-warning">no-var</li>`,
+   * `<li class="text-warning">var-on-top</li>`,
+   * `<li class="text-warning">linebreak</li>`]
+   */
+  const resultDisplayArray = makeList(result.failure);
+  console.log(resultDisplayArray);
+
+// Write Concise Object Literal Declarations Using Simple Fields
+  // Example 1: less simple
+  const createPerson = (name, age, gender) => {
+    return {
+      name: name,
+      age: age,
+      gender: gender
+    //  👆🏼 key   👆🏼 value
+    };
+  };
+  console.log(createPerson("Zodiac Hasbro", 56, "male"));
+  // Example 2: more simple                       👇🏼 JS knows it's going to return this object, and it's going to have 3 key value pairs.
+  const createPerson1 = (name, age, gender) => ({name, age, gender});
+  console.log(createPerson1("Zodiac Hasbro", 56, "male"));
+
+// Write Concise Declarative Functions 
+  // Long way:
+  const bicycle = {
+    gear: 2,
+    setGear: function(newGear) {  // this is the long way
+      "use strict";
+      this.gear = newGear;
+    }
+  };
+  bicycle.setGear(3);
+  console.log(bicycle.gear);
+  // Shorter way:
+  const bicycle1 = {
+    gear: 2,
+    setGear(newGear) {    // don't have to write ": function"
+      "use strict";
+      this.gear = newGear;
+    }
+  };
+  bicycle1.setGear(3);
+  console.log(bicycle1.gear);
+
+// Use class Syntax to Define a Constructor Function
+  // ES6 provides a syntax to help create objects using the class keyword
+  // Example 1:
+  var SpaceShuttle = function(targetPlanet) {
+    this.targetPlanet = targetPlanet;
+  };
+  var zeus = new SpaceShuttle('Jupiter');
+  console.log(zeus.targetPlanet)
+  // Example 2:
+  // The class syntax replaces the constructor function creation
+  class SpaceShuttle1 {
+    constructor(targetPlanet) {
+      this.targetPlanet = targetPlanet;
+    };
+  };
+  var zeus = new SpaceShuttle1('Jupiter');
+  console.log(zeus.targetPlanet);
+  // Example 3:
+  function makeClass() {
+    class Vegetable {
+      constructor(name){
+        this.name = name;
+      }
+    }
+    return Vegetable;
+  }
+  const Vegetable = makeClass();
+  const carrot = new Vegetable('carrot');
+  console.log(carrot.name);
+
+// Use getters and setters to Control Access to an Object
+  // getter functions are meant to simply return or 'get' the value of an object's private variable to a user without the user directly accessing the private variable.
+  // with a class object, you often want to obtain values from the object, and set the value of a property within an object
+  // Example 1:
+  class Book {
+    constructor(author) {
+      this._author = author;
+          // 👆🏼 private variable
+    }
+    // getter
+    get writer() {
+      return this._author;
+    }
+    // setter
+    set writer(updatedAuthor) {  // this change and evoke calculations or even overwrite the previous value completely
+      this._author = updatedAuthor;
+    }
+  }
+  // Example 2:
+    // make your own getter and setter for the thermostat class.
+    // when we construct the class, it's going to accept Farenheit
+    // we're going to create a getter and setter that's going to obtain the temperature in Celsius.
+  function makeClass() {
+    class Thermostat {
+      constructor(temp) {
+        this._temp = 5/9 * (temp - 32);         // when you start a variable with an underscore _, that's going to generally signify that it's a private variable, meaning you're not supposed to access it outside of that scope or outside of that class.
+      }
+      // getter
+      get temperature(){
+        return this._temp;
+      }
+      // setter
+      set temperature(updatedTemp){
+        this._temp = updatedTemp;
+      }
+    }
+    return Thermostat;
+  }
+  const Thermostat = makeClass();
+  const thermos = new Thermostat(76);  // when obstantiating an object, you use the "new" keyword.
+  let temp = thermos.temperature;     // if this were a function, you'd see () after it.  Since it's a variable or property name, it's going to not have parenthesis.
+  thermos.temperature = 26;           
+  temp = thermos.temperature;
+  console.log(temp);
+
+// Understand the differences between import and require
+  // in the past, require functions were used to import functions and code from other files.
+  // now we have import and export.  You can export code in one file and import it in another file.
+  // it also allows you to import certain functions from a file, or certain variables.
+  // Example:
+  // import { capitalizeString } from "./string_function"  // don't have to put .js in the file name, that's assumed
+  // const cap = capitalizeString("hello!");
+  // console.log(cap);
+      // didn't run this because it crashed the entire console.
+
+// Use export to Reuse a Code Block
+  // const capitalizeString = (string) => {
+  //   return string.charAt(0).toUpperCase() + string.slice(1);
+  // };
+  // export {capitalizeString};
+  // export const foo = "bar";
+  // export const bar = "foo";
+
+// Use * to import everything from a file
+  // import * as capitalizeStrings from "capitlaize_strings";
+  //  👆🏼 start   👆🏼 object              👆🏼 alternate file  
+
+// // Create an Export Fallback with export Default
+//   // if an export isn't named, it's an export default.  This is a fallback export, and used if you only want to export one thing from a file.
+//   export default function subtract(x, y) {return x - y;};
+
+// // Import a Default Export
+//   import subtract from "math_functions"
+//   subtract(7,4);
